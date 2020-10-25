@@ -12,7 +12,6 @@ local.properties
 
 .DS_Store
 
-*.pdf
 
 # External tool builders
 .externalToolBuilders/
