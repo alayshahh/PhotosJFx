@@ -9,6 +9,7 @@ import java.util.ArrayList;
  *
  */
 public class Album implements Serializable{
+	//TODO Search by date
 	
 	static final long serialVersionUID = 1L;
 	
@@ -25,15 +26,28 @@ public class Album implements Serializable{
 	/**
 	 * Creates new Album of with the title name
 	 * @param name
+	 * @see Photo
 	 */
 	public Album(String name) {
 		this.name = name;
 	}
 	
 	/**
+	 * Creates Album from list of Photos and given Title. Used for search results.
+	 * @param name
+	 * @param photos
+	 * @see Photo
+	 */
+	public Album(String name, ArrayList<Photo>photos) {
+		this.name = name;
+		this.photos = photos;
+	}
+	
+	/**
 	 * Adds Photo me to Album
 	 * @param me
 	 * @see Photo
+	 * 
 	 */
 	public void addPhoto(Photo me) {
 		photos.add(me);
@@ -67,7 +81,7 @@ public class Album implements Serializable{
 		return photos.contains(me);
 	}
 	/**
-	 * Returns list of Photos that are in 
+	 * Returns list of Photos that have the searched tag 
 	 * @param t
 	 * @return
 	 */
@@ -81,6 +95,14 @@ public class Album implements Serializable{
 		return result;
 	}
 	
+	/**
+	 * Returns List of Photos that have current tag. Use for AND search
+	 * @param photos
+	 * @param t2
+	 * @return
+	 * @see Photo
+	 * @see Tag
+	 */
 	private ArrayList<Photo> searchTag(ArrayList<Photo> photos, Tag t2){
 		for(Photo photo:photos) {
 			if(!photo.hasTag(t2)) {
@@ -90,6 +112,13 @@ public class Album implements Serializable{
 		return photos;
 	}
 	
+	/**
+	 * Tag Search for AND and OR 
+	 * @param t
+	 * @param t2
+	 * @param isAnd
+	 * @return
+	 */
 	public ArrayList<Photo> searchTag(Tag t, Tag t2, boolean isAnd){
 		ArrayList<Photo> result = searchTag(t);
 		if(!isAnd) {
@@ -98,6 +127,20 @@ public class Album implements Serializable{
 		}else {
 			result = searchTag(result, t2);
 			return result;
+		}
+	}
+	
+	
+	/**
+	 * Returns true if the object is an Album and the name matches the current album name
+	 */
+	@Override
+	public boolean equals(Object o) {
+		if(!(o instanceof Album)||o==null){
+			return false;
+		}else {
+			Album a = (Album) o;
+			return this.name.equals(a.name);
 		}
 	}
 }
