@@ -5,6 +5,14 @@ import java.util.ArrayList;
 import java.util.Date; 
 import java.text.SimpleDateFormat;
 
+
+/**
+ * 
+ * @author Alay Shah
+ * @author Anshika Khare
+ *
+ */
+
 public class Photo implements Serializable {
 	
 	final String dir = "dat";
@@ -14,6 +22,7 @@ public class Photo implements Serializable {
 	
 	private String filePath;
 	private String date;
+	private Date d;
 	private String caption;
 	private ArrayList<Tag> tags;
 	
@@ -27,10 +36,11 @@ public class Photo implements Serializable {
 	public Photo(String filePath) {
 		this.filePath = filePath;
 		File photo = new File(filePath);
-		Date d = new Date(photo.lastModified());
+		d = new Date(photo.lastModified());
 		date = new SimpleDateFormat("MM/dd/yyy").format(d);
 		tags = new ArrayList<>();
 		caption = "";
+		
 		
 	}
 	/**
