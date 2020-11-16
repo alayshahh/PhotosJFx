@@ -27,6 +27,6 @@
             <Font size="37.0" />
          </font>
       </Label>
-      <Button fx:id="LogInButton" layoutX="125.0" layoutY="146.0" mnemonicParsing="false" style="-fx-alignment: center; -fx-background-color: #147efb;" text="Log In" textFill="WHITE" />
+      <Button fx:id="LogInButton" layoutX="125.0" layoutY="146.0" mnemonicParsing="false" style="-fx-alignment: center; -fx-background-color: #147efb;" text="Log In" textFill="WHITE" onAction = "#logInPressed" />
    </children>
 </AnchorPane>
