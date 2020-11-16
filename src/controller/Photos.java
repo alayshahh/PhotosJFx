@@ -9,7 +9,7 @@ import javafx.stage.Stage;
 public class Photos extends Application {
 	
 	
-	private static Stage window;
+	public static Stage window;
 	
 	
 	
