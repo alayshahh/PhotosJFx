@@ -38,6 +38,15 @@ public class Tag implements Serializable{
 	}
 	
 	/**
+	 * Checks if a certain key,value pair is equal to a tag object
+	 * @param key
+	 * @param value
+	 * @return
+	 */
+	public boolean equals(String key, String value) {
+		return(this.key==key.trim().toUpperCase())&&(this.value==value.trim().toUpperCase());
+	}
+	/**
 	 * Returns tag value
 	 * @return
 	 */
