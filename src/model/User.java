@@ -61,6 +61,15 @@ public class User implements Serializable{
 	
 	
 	/**
+	 * Returns the userName of the User
+	 * @return
+	 */
+	public String getUserName() {
+		return this.userName;
+	}
+	
+	
+	/**
 	 *Returns true if Object is a User and username equals current username
 	 */
 	@Override 
