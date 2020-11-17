@@ -1,8 +1,14 @@
 package model;
 
 import java.io.*;
+import java.net.MalformedURLException;
 import java.util.ArrayList;
-import java.util.Date; 
+import java.util.Date;
+
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
+
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 
 
@@ -25,6 +31,7 @@ public class Photo implements Serializable {
 	private Date d;
 	private String caption;
 	private ArrayList<Tag> tags;
+//	private ImageView image; 
 	
 	
 	
@@ -40,6 +47,12 @@ public class Photo implements Serializable {
 		System.out.println(photo.getAbsolutePath());
 		d = new Date(photo.lastModified());
 		date = new SimpleDateFormat("MM/dd/yyy").format(d);
+		try {
+			d = new SimpleDateFormat("MM/dd/yyyy").parse(date);
+		} catch (ParseException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		tags = new ArrayList<>();
 		caption = "";
 		
@@ -68,7 +81,7 @@ public class Photo implements Serializable {
 			return false;
 		}else {
 			Photo p = (Photo) o;
-			return p.filePath == filePath;
+			return p.filePath == filePath && p.getCaption() ==caption;
 		}
 	}
 	
@@ -122,11 +135,45 @@ public class Photo implements Serializable {
 	}
 	
 	/**
+	 * Adds inputed tag
+	 * @param t
+	 */
+	public void addTag(Tag t) {
+		tags.add(t);
+	}
+	
+	/**
 	 * Returns Date Object
 	 * @return
 	 */
 	public Date getDateObj() {
 		return this.d;
+	}
+	
+	/**
+	 * Returns the ImageView of the photo
+	 * @return
+	 */
+	public ImageView getImage() {
+		File photo = new File(filePath);
+		String path="";
+		try {
+			path = photo.toURI().toURL().toString();
+		} catch (MalformedURLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		System.out.println(path);
+		Image i = new Image(path);
+		ImageView image = new ImageView(i);
+		
+		image.setFitHeight(100);
+		image.setFitWidth(100);
+		return image;
+	}
+	
+	public void deleteTag(Tag t) {
+		tags.remove(t);
 	}
 	
 	
