@@ -78,6 +78,7 @@ public class AdminController{
 		});
 		Optional<String> result = getNewUser.showAndWait();
 		result.ifPresent(userName ->{
+			userName = userName.trim();
 			if(UserList.getUserList().contains(userName)) {
 				Alert a = new Alert(AlertType.ERROR);
 				a.setHeaderText("User Already Exists");
@@ -111,11 +112,11 @@ public class AdminController{
 	 */
 	public void deleteUserPressed(ActionEvent e) {
 		User u = listUsers.getSelectionModel().getSelectedItem();
-		if(u.getUserName()=="stock") {
-			Alert warning = new Alert(AlertType.WARNING);
-			warning.setHeaderText("Cannot delete Stock User");
-			
-		}
+//		if(u.getUserName().equals("stock")) {
+//			Alert warning = new Alert(AlertType.WARNING);
+//			warning.setHeaderText("Cannot delete Stock User");
+//			
+//		}
 		Alert confirm = new Alert(AlertType.CONFIRMATION);
 		confirm.setContentText("Are you sure you want to delete "+ u +"?");
 		Optional<ButtonType> selected = confirm.showAndWait();
