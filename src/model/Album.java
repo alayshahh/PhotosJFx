@@ -30,7 +30,7 @@ public class Album implements Serializable{
 	ArrayList<Photo> photos= new ArrayList<>(); 
 	
 	Date minDate = new Date(Long.MAX_VALUE);
-	Date maxDate = new Date();
+	Date maxDate = new Date(0);
 	
 	/**
 	 * Creates new Album of with the title name
@@ -50,6 +50,15 @@ public class Album implements Serializable{
 	public Album(String name, ArrayList<Photo>photos) {
 		this.name = name;
 		this.photos = photos;
+		updateDateRange();
+	}
+	
+	/**
+	 * Gets list of all photos.
+	 * @return
+	 */
+	public ArrayList<Photo> getPhotos(){
+		return photos;
 	}
 	
 	/**
@@ -155,7 +164,7 @@ public class Album implements Serializable{
 	 */
 	public ArrayList<Photo> searchDate(Date min, Date max){
 		ArrayList<Photo> res = new ArrayList<>();
-		if(min.after(minDate) || max.before(maxDate)) {
+		if(min.after(maxDate) || max.before(minDate)) {
 			return res;
 		}
 		for (Photo p: photos) {
@@ -182,7 +191,7 @@ public class Album implements Serializable{
 	 * Updates date range of album after photo is deleted
 	 */
 	private void updateDateRange() {
-		maxDate = new Date();
+		maxDate = new Date(0);
 		minDate = new Date(Long.MAX_VALUE);
 		for(Photo p: photos) {
 			if(p.getDateObj().after(maxDate)) {
@@ -205,6 +214,33 @@ public class Album implements Serializable{
 			Album a = (Album) o;
 			return this.name.equals(a.name);
 		}
+	}
+	
+	/**
+	 * Gives next image in order. Used for slideshow purposes.
+	 * @param p
+	 * @return
+	 */
+	public Photo getNext(Photo p) {
+		int i = photos.indexOf(p);
+		if(i==photos.size()-1) {
+			i=0;
+		}else i++;
+		return photos.get(i);
+		
+	}
+	/**
+	 * Gives next image in order. Used for slideshow purposes.
+	 * @param p
+	 * @return
+	 */
+	public Photo getPrev(Photo p) {
+		int i = photos.indexOf(p);
+		if(i==0) {
+			i=photos.size()-1;
+		}else i--;
+		return photos.get(i);
+		
 	}
 
 	/**
