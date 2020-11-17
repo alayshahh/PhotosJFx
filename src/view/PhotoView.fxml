@@ -10,38 +10,37 @@
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="377.0" prefWidth="578.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
    <children>
-      <ListView layoutX="75.0" layoutY="299.0" prefHeight="73.0" prefWidth="214.0" />
+      <ListView fx:id="tagsList" layoutX="75.0" layoutY="299.0" prefHeight="73.0" prefWidth="214.0" />
       <Label layoutX="14.0" layoutY="14.0">
          <font>
             <Font size="30.0" />
          </font></Label>
-      <Button layoutX="294.0" layoutY="299.0" mnemonicParsing="false" prefHeight="27.0" prefWidth="110.0" text="Add Tag" />
+      <Button layoutX="294.0" layoutY="299.0" mnemonicParsing="false" onAction="#addTag" prefHeight="27.0" prefWidth="110.0" text="Add Tag" />
       <Label layoutX="33.0" layoutY="299.0" prefHeight="27.0" prefWidth="40.0" text="Tags">
          <font>
             <Font size="19.0" />
          </font>
       </Label>
-      <Button layoutX="411.0" layoutY="299.0" mnemonicParsing="false" prefHeight="27.0" prefWidth="108.0" text="Delete Tag" />
-      <ImageView fitHeight="218.0" fitWidth="349.0" layoutX="111.0" layoutY="11.0" pickOnBounds="true" preserveRatio="true" />
-      <Button layoutX="465.0" layoutY="107.0" mnemonicParsing="false" text="&gt;" />
-      <Button layoutX="79.0" layoutY="107.0" mnemonicParsing="false" text="&lt;" />
+      <Button layoutX="294.0" layoutY="336.0" mnemonicParsing="false" onAction="#deleteTag" prefHeight="27.0" prefWidth="108.0" text="Delete Tag" />
+      <ImageView fx:id="img" fitHeight="218.0" fitWidth="349.0" layoutX="111.0" layoutY="11.0" pickOnBounds="true" preserveRatio="true" />
+      <Button fx:id="next" layoutX="465.0" layoutY="107.0" mnemonicParsing="false" onAction="#nextHit" text="&gt;" />
+      <Button fx:id="prev" layoutX="79.0" layoutY="107.0" mnemonicParsing="false" onAction="#prevHit" text="&lt;" />
       <Label layoutX="9.0" layoutY="269.0" text="Caption">
          <font>
             <Font size="19.0" />
          </font>
       </Label>
-      <TextField layoutX="75.0" layoutY="267.0" prefHeight="27.0" prefWidth="214.0" />
-      <Button layoutX="293.0" layoutY="267.0" mnemonicParsing="false" prefHeight="27.0" prefWidth="110.0" text="Edit Caption" />
-      <Button layoutX="293.0" layoutY="234.0" mnemonicParsing="false" prefHeight="27.0" prefWidth="110.0" text="Move To Album" />
-      <Button layoutX="410.0" layoutY="234.0" mnemonicParsing="false" prefHeight="27.0" prefWidth="110.0" text="Copy To Album" />
-      <Button layoutX="507.0" layoutY="14.0" mnemonicParsing="false" text="Log Out" />
+      <TextField fx:id="caption" layoutX="75.0" layoutY="267.0" prefHeight="27.0" prefWidth="214.0" />
+      <Button layoutX="293.0" layoutY="267.0" mnemonicParsing="false" onAction="#editCaptionHit" prefHeight="27.0" prefWidth="110.0" text="Edit Caption" />
+      <Button layoutX="452.0" layoutY="299.0" mnemonicParsing="false" onAction="#moveTo" prefHeight="27.0" prefWidth="110.0" text="Move To Album" />
+      <Button layoutX="452.0" layoutY="336.0" mnemonicParsing="false" onAction="#copyTo" prefHeight="27.0" prefWidth="110.0" text="Copy To Album" />
+      <Button layoutX="507.0" layoutY="14.0" mnemonicParsing="false" onAction="#logOut" text="Log Out" />
       <Label layoutX="34.0" layoutY="238.0" text="Date">
          <font>
             <Font size="19.0" />
          </font>
       </Label>
-      <TextField layoutX="75.0" layoutY="236.0" />
-      <Button layoutX="410.0" layoutY="266.0" mnemonicParsing="false" prefHeight="27.0" prefWidth="110.0" text="Save Caption" />
-      <Button layoutX="13.0" layoutY="14.0" mnemonicParsing="false" prefHeight="27.0" prefWidth="71.0" text="Back" />
+      <TextField fx:id="date" layoutX="75.0" layoutY="236.0" />
+      <Button fx:id="back" layoutX="13.0" layoutY="14.0" mnemonicParsing="false" onAction="#backHit" prefHeight="27.0" prefWidth="71.0" text="Back" />
    </children>
 </AnchorPane>

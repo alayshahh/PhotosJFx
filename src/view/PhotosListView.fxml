@@ -13,8 +13,8 @@
       <ButtonBar layoutX="96.0" layoutY="260.0" prefHeight="40.0" prefWidth="372.0">
         <buttons>
             <Button fx:id="view" mnemonicParsing="false" text="View" />
-            <Button fx:id="add" mnemonicParsing="false" prefHeight="27.0" prefWidth="95.0" text="Add" />
-            <Button fx:id="delete" mnemonicParsing="false" text="Delete" />
+            <Button fx:id="add" mnemonicParsing="false" onAction="#add" prefHeight="27.0" prefWidth="95.0" text="Add" />
+            <Button fx:id="delete" mnemonicParsing="false" onAction="#delete" text="Delete" />
         </buttons>
       </ButtonBar>
       <Label layoutX="14.0" layoutY="14.0" text="Photos">
@@ -28,7 +28,7 @@
         </columns>
       </TableView>
       <Button fx:id="LogOut" layoutX="402.0" layoutY="14.0" mnemonicParsing="false" text="Log Out" />
-      <Button fx:id="back" layoutX="327.0" layoutY="14.0" mnemonicParsing="false" prefHeight="27.0" prefWidth="62.0" text="Back" />
-      <Button fx:id="create" layoutX="14.0" layoutY="267.0" mnemonicParsing="false" text="Create Album" />
+      <Button fx:id="back" layoutX="327.0" layoutY="14.0" mnemonicParsing="false" onAction="#back" prefHeight="27.0" prefWidth="62.0" text="Back" />
+      <Button fx:id="create" layoutX="14.0" layoutY="267.0" mnemonicParsing="false" onAction="#createAlbum" text="Create Album" />
    </children>
 </AnchorPane>
