@@ -1,6 +1,8 @@
 package model;
 
 import java.io.Serializable;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.ArrayList;
 /**
  * 
@@ -9,7 +11,11 @@ import java.util.ArrayList;
  *
  */
 public class Album implements Serializable{
-	//TODO Search by date
+	
+	
+	
+	
+	
 	
 	static final long serialVersionUID = 1L;
 	
@@ -22,6 +28,9 @@ public class Album implements Serializable{
 	 * Photos the Album Contains
 	 */
 	ArrayList<Photo> photos= new ArrayList<>(); 
+	
+	Date minDate = new Date(Long.MAX_VALUE);
+	Date maxDate = new Date();
 	
 	/**
 	 * Creates new Album of with the title name
@@ -50,6 +59,12 @@ public class Album implements Serializable{
 	 * 
 	 */
 	public void addPhoto(Photo me) {
+		if(me.getDateObj().before(minDate)) {
+			minDate=me.getDateObj();
+		}
+		if(me.getDateObj().after(maxDate)) {
+			maxDate = me.getDateObj();
+		}
 		photos.add(me);
 	}
 	
@@ -69,6 +84,7 @@ public class Album implements Serializable{
 	 */
 	public void removePhoto(Photo me) {
 		photos.remove(me);
+		updateDateRange();
 	}
 	
 	/**
@@ -80,6 +96,7 @@ public class Album implements Serializable{
 	public boolean contains(Photo me) {
 		return photos.contains(me);
 	}
+	
 	/**
 	 * Returns list of Photos that have the searched tag 
 	 * @param t
@@ -130,6 +147,52 @@ public class Album implements Serializable{
 		}
 	}
 	
+	/**
+	 * Returns arrayList of photos that are in the given range
+	 * @param min
+	 * @param max
+	 * @return
+	 */
+	public ArrayList<Photo> searchDate(Date min, Date max){
+		ArrayList<Photo> res = new ArrayList<>();
+		if(min.after(minDate) || max.before(maxDate)) {
+			return res;
+		}
+		for (Photo p: photos) {
+			if(p.getDateObj().equals(min)|| p.getDateObj().equals(max)) {
+				res.add(p);
+			}else if(p.getDateObj().after(min) && p.getDateObj().before(max)) {
+				res.add(p);
+			}
+		}
+		return res;
+	}
+	
+	
+	/**
+	 * Returns a string that has the maxDate and minDate of the album
+	 * @return
+	 */
+	public String getDateRange() {
+		SimpleDateFormat sdf = new SimpleDateFormat("MM/dd/yyyy");
+		return sdf.format(minDate)+"-"+sdf.format(maxDate);
+	}
+	
+	/**
+	 * Updates date range of album after photo is deleted
+	 */
+	private void updateDateRange() {
+		maxDate = new Date();
+		minDate = new Date(Long.MAX_VALUE);
+		for(Photo p: photos) {
+			if(p.getDateObj().after(maxDate)) {
+				maxDate = p.getDateObj();
+			}
+			if(p.getDateObj().before(minDate)) {
+				minDate = p.getDateObj();
+			}
+		}
+	}
 	
 	/**
 	 * Returns true if the object is an Album and the name matches the current album name
@@ -143,4 +206,16 @@ public class Album implements Serializable{
 			return this.name.equals(a.name);
 		}
 	}
+
+	/**
+	 * Returns string in format of: {@link #name} * {@link #photos.size()} * {@link #minDate}-{@link #maxDate} *
+	 */
+	public String toString() {
+		if(photos.size()==0) {
+			return name+" * 0 * *";
+		}else {
+			return name+ " * "+ photos.size()+ " * " + getDateRange() + " * ";
+		}
+	}
+	
 }
