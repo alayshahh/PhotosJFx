@@ -1,7 +1,6 @@
 package controller;
 
 import java.io.EOFException;
-import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -43,7 +42,7 @@ public class logInController implements Initializable {
 	 * 
 	 */
 	@Override
-	public void initialize(URL url, ResourceBundle resourceBundle) {
+	public void initialize(URL url, ResourceBundle resourceBundle){
 		//read from file to import userList
 		System.out.println("hello");
 		
