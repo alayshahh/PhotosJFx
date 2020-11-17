@@ -83,20 +83,44 @@ public class UserList implements Serializable {
 	}
 	
 	
+	/**
+	 * @inheritDoc
+	 * @throws IOException
+	 */
+	 
 	public void writeApp() throws IOException{
 		ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream(storDir + File.separator + storeFile));
 		oos.writeObject(userList);
 		oos.close();
 	}
 	
+	/**
+	 * @inheritDoc
+	 * @throws IOException
+	 * @throws ClassNotFoundException
+	 */
 	public void readApp() throws IOException, ClassNotFoundException{
 		ObjectInputStream  ois = new ObjectInputStream( new FileInputStream(storDir+File.separator+storeFile));
 		userList = (UserList) ois.readObject();
 		ois.close();
 		
 	}
+	/**
+	 * Gives current UserList
+	 * @return
+	 */
 	public static UserList getUserList() {
 		return userList;
 	}
+	
+	/**
+	 * Gives the full list of current users
+	 * @return
+	 */
+	public ArrayList<User> getAll(){
+		return allUsers;
+	}
+	
+	
 }
 
