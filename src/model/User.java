@@ -82,6 +82,12 @@ public class User implements Serializable{
 		}
 	}
 	
+	/**
+	 * Returns the userName of the user
+	 */
+	public String toString () {
+		return userName;
+	}
 	
 	
 }
