@@ -36,6 +36,8 @@ public class Photo implements Serializable {
 	public Photo(String filePath) {
 		this.filePath = filePath;
 		File photo = new File(filePath);
+//		System.out.println((photo.lastModified()));
+		System.out.println(photo.getAbsolutePath());
 		d = new Date(photo.lastModified());
 		date = new SimpleDateFormat("MM/dd/yyy").format(d);
 		tags = new ArrayList<>();
@@ -119,6 +121,13 @@ public class Photo implements Serializable {
 		return tags;
 	}
 	
+	/**
+	 * Returns Date Object
+	 * @return
+	 */
+	public Date getDateObj() {
+		return this.d;
+	}
 	
 	
 	
