@@ -91,6 +91,12 @@ public class AdminController{
 				a.showAndWait();
 				return;
 			}
+			if(userName.toLowerCase().equals("admin")) {
+				Alert a = new Alert(AlertType.ERROR);
+				a.setHeaderText("Enter Valid Username");
+				a.showAndWait();
+				return;
+			}
 			UserList.getUserList().addUser(new User(userName));
 			try {
 				UserList.getUserList().writeApp();
