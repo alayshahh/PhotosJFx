@@ -23,8 +23,8 @@
       </Label>
       <Button layoutX="411.0" layoutY="299.0" mnemonicParsing="false" prefHeight="27.0" prefWidth="108.0" text="Delete Tag" />
       <ImageView fitHeight="218.0" fitWidth="349.0" layoutX="111.0" layoutY="11.0" pickOnBounds="true" preserveRatio="true" />
-      <Button layoutX="538.0" layoutY="115.0" mnemonicParsing="false" text="&gt;" />
-      <Button layoutX="14.0" layoutY="115.0" mnemonicParsing="false" text="&lt;" />
+      <Button layoutX="465.0" layoutY="107.0" mnemonicParsing="false" text="&gt;" />
+      <Button layoutX="79.0" layoutY="107.0" mnemonicParsing="false" text="&lt;" />
       <Label layoutX="9.0" layoutY="269.0" text="Caption">
          <font>
             <Font size="19.0" />
@@ -42,5 +42,6 @@
       </Label>
       <TextField layoutX="75.0" layoutY="236.0" />
       <Button layoutX="410.0" layoutY="266.0" mnemonicParsing="false" prefHeight="27.0" prefWidth="110.0" text="Save Caption" />
+      <Button layoutX="13.0" layoutY="14.0" mnemonicParsing="false" prefHeight="27.0" prefWidth="71.0" text="Back" />
    </children>
 </AnchorPane>
