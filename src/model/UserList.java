@@ -84,6 +84,10 @@ public class UserList implements Serializable {
 	
 	
 	 
+	/**
+	 * Writes to file
+	 * @throws IOException if file does not exist
+	 */
 	public void writeApp() throws IOException{
 		ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream(storDir + File.separator + storeFile));
 		oos.writeObject(userList);
@@ -91,6 +95,11 @@ public class UserList implements Serializable {
 	}
 	
 
+	/**
+	 * Reads from file
+	 * @throws IOException if file not found
+	 * @throws ClassNotFoundException if class is not found
+	 */
 	public void readApp() throws IOException, ClassNotFoundException{
 		ObjectInputStream  ois = new ObjectInputStream( new FileInputStream(storDir+File.separator+storeFile));
 		userList = (UserList) ois.readObject();

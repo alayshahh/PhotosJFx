@@ -113,6 +113,11 @@ public class AlbumController {
 	}
 	
 	
+	/**
+	 * Opens PhotoView with selected image.
+	 * @param e ActionEvent
+	 * @throws IOException if FXMLLoader fail
+	 */
 	public void view(ActionEvent e) throws IOException {
 		if(table.getSelectionModel().getSelectedItem()==null){
 			return;

@@ -88,8 +88,8 @@ public class Album implements Serializable{
 	
 	/**
 	 * Deletes the photo from the album
-	 * @param me
-	 * @see Photo
+	 * @param me photo to be deleted
+	 * @see Photo 
 	 */
 	public void removePhoto(Photo me) {
 		photos.remove(me);
