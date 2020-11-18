@@ -185,8 +185,27 @@ public class Album implements Serializable{
 	 * @return
 	 */
 	public String getDateRange() {
+		if(photos.size()==0) {
+			return "";
+		}
 		SimpleDateFormat sdf = new SimpleDateFormat("MM/dd/yyyy");
 		return sdf.format(minDate)+"-"+sdf.format(maxDate);
+	}
+	
+	/**
+	 * Returns number of photos in album.
+	 * @return
+	 */
+	public String getNumPhotos() {
+		return ""+photos.size();
+	}
+	
+	/**
+	 * Returns album name
+	 * @return
+	 */
+	public String getName() {
+		return name;
 	}
 	
 	/**
