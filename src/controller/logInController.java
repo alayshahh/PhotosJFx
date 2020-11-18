@@ -44,12 +44,12 @@ public class logInController implements Initializable {
 	@Override
 	public void initialize(URL url, ResourceBundle resourceBundle){
 		//read from file to import userList
-		System.out.println("hello");
+		//System.out.println("hello");
 		
 		try {
 			UserList.getUserList().readApp();
 		}catch(EOFException e){
-			System.out.println("No users");
+			//System.out.println("No users");
 		} catch (ClassNotFoundException e) {
 			e.printStackTrace();
 		} catch (IOException e) {
@@ -126,16 +126,16 @@ public class logInController implements Initializable {
 		Album stockImg = new Album("stock img");
 		stock.addAlbum(stockImg);
 		char x = File.separatorChar;
-		String relativePath = x+"docs"+x+"stock"+x;
+		String relativePath = x+"data"+x+"stock"+x;
 		String [] stockFilePaths = new String [] {"Stock.jpg", "stock2.jpg","stock3.jpg", "stock4.jpg", "stock5.jpg"};
 		String [] captions = new String [] {"omg", "mind = blown", "yes sir", "hacker", "coffee"};
 		for(int i = 0; i<captions.length; i++) {
 			Photo p = new Photo(currentPath+relativePath+stockFilePaths[i]);
 			p.setCaption(captions[i]);
 			stockImg.addPhoto(p);
-			System.out.println(p.getDate());
+			//System.out.println(p.getDate());
 		}
-		System.out.println(stockImg);
+		//System.out.println(stockImg);
 		return stock;
 		
 	}
