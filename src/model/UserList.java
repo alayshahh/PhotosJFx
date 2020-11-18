@@ -14,7 +14,7 @@ public class UserList implements Serializable {
 	static UserList userList = new UserList();
 	
 	static final long serialVersionUID = 1L;
-	public static final String storDir = "dat";
+	public static final String storDir = "data";
 	public static final String storeFile = "users.dat";
 	
 	
