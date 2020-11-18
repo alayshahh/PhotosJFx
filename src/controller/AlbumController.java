@@ -31,7 +31,12 @@ import model.Album;
 import model.Photo;
 import model.User;
 import model.UserList;
-
+/**
+ * 
+ * @author Alay Shah
+ * @author Anshika Khare
+ *
+ */
 public class AlbumController {
 	
 	@FXML Button LogOut;
@@ -85,7 +90,12 @@ public class AlbumController {
 	}
 	
 	
-	public void add(ActionEvent e) {
+	/**
+	 * Opens file explorer and addes chosen file to the album
+	 * @param e
+	 * @throws IOException
+	 */
+	public void add(ActionEvent e) throws IOException {
 		System.out.println("Add pressed");
 		FileChooser fileChooser = new FileChooser();
 		fileChooser.setTitle("Open Resource File");
@@ -93,13 +103,27 @@ public class AlbumController {
 		if(f==null) {
 			return;
 		}
+		//System.out.println(f.getAbsolutePath());
 		Photo p = new Photo(f.getAbsolutePath());
 		album.addPhoto(p);
+		UserList.getUserList().writeApp();
+		start(album,me,false);
 		table.getSelectionModel().select(p);
-		start(album, me, false);
-	
+		view(e);
 	}
-
+	
+	
+	public void view(ActionEvent e) throws IOException {
+		if(table.getSelectionModel().getSelectedItem()==null){
+			return;
+		}
+		FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/PhotoView.fxml"));
+		Parent root = (Parent) loader.load();
+		Scene user  = new Scene(root);
+		PhotoController next = loader.getController();
+		next.start(me,album, table.getSelectionModel().getSelectedItem());
+		Photos.window.setScene(user);
+	}
 
 	/**
 	 * Deletes the selected photo from the album.
