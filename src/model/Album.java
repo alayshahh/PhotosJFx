@@ -130,12 +130,13 @@ public class Album implements Serializable{
 	 * @see Tag
 	 */
 	private ArrayList<Photo> searchTag(ArrayList<Photo> photos, Tag t2){
+		ArrayList<Photo> toRemove = new ArrayList<>();
 		for(Photo photo:photos) {
 			if(!photo.hasTag(t2)) {
-				photos.remove(photo);
+				toRemove.add(photo);
 			}
 		}
-		return photos;
+		return toRemove;
 	}
 	
 	/**
@@ -151,7 +152,8 @@ public class Album implements Serializable{
 			result.addAll(searchTag(t2));
 			return result;
 		}else {
-			result = searchTag(result, t2);
+			ArrayList<Photo> toRemove = searchTag(result, t2);
+			result.removeAll(toRemove);
 			return result;
 		}
 	}
