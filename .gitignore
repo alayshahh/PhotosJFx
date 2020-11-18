@@ -11,7 +11,11 @@ local.properties
 .recommenders
 
 .DS_Store
+# Eclipse Core      
+.project
 
+# JDT-specific (Eclipse Java Development Tools)     
+.classpath
 
 # External tool builders
 .externalToolBuilders/

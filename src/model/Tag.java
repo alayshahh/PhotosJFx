@@ -4,6 +4,11 @@ import java.io.Serializable;
 
 
 
+/**
+ * @author Alay Shah
+ * @author Anshika Khare
+ *
+ */
 public class Tag implements Serializable{
 	static final long serialVersionUID = 1L;
 	
@@ -12,8 +17,8 @@ public class Tag implements Serializable{
 	
 	/**
 	 * Creates tag with a  key/value
-	 * @param key
-	 * @param value
+	 * @param key Tag Arrtibute
+	 * @param value Tag value
 	 */
 	public Tag(String key, String value) {
 		this.key=key.trim().toUpperCase();
@@ -23,7 +28,7 @@ public class Tag implements Serializable{
 	/**
 	 * Returns true if o is a Tag and is equal to current tag
 	 * 
-	 * @param o
+	 * @param o Object to be checked for equality
 	 * @return
 	 * 
 	 */
@@ -33,29 +38,33 @@ public class Tag implements Serializable{
 			return false;
 		}else {
 			Tag t = (Tag) o;
-			return (this.value == t.value)&& (this.key == t.key);
+			return (this.value.equals(t.value))&& (this.key.equals(t.key));
 		}
+	}
+	
+	public String toString() {
+		return this.key +"="+ this.value;
 	}
 	
 	/**
 	 * Checks if a certain key,value pair is equal to a tag object
-	 * @param key
-	 * @param value
-	 * @return
+	 * @param key Tag Attribute
+	 * @param value Tag Value
+	 * @return true if key and value match
 	 */
 	public boolean equals(String key, String value) {
-		return(this.key==key.trim().toUpperCase())&&(this.value==value.trim().toUpperCase());
+		return(this.key.equals(key.trim().toUpperCase()))&&(this.value.equals(value.trim().toUpperCase()));
 	}
 	/**
 	 * Returns tag value
-	 * @return
+	 * @return value
 	 */
 	public String getValue() {
 		return this.value;
 	}
 	/**
 	 * Returns Tag key
-	 * @return
+	 * @return key
 	 */
 	public String getKey() {
 		return this.key;

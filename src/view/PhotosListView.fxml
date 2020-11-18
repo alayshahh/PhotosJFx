@@ -8,25 +8,27 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="319.0" prefWidth="478.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="319.0" prefWidth="478.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.AlbumController">
    <children>
-      <ButtonBar layoutX="140.0" layoutY="260.0" prefHeight="40.0" prefWidth="328.0">
+      <ButtonBar layoutX="96.0" layoutY="260.0" prefHeight="40.0" prefWidth="372.0">
         <buttons>
-            <Button mnemonicParsing="false" prefHeight="27.0" prefWidth="95.0" text="Add" />
-            <Button mnemonicParsing="false" text="View" />
-            <Button mnemonicParsing="false" text="Delete" />
+            <Button fx:id="view" mnemonicParsing="false" onAction="#view" text="View" />
+            <Button fx:id="add" mnemonicParsing="false" onAction="#add" prefHeight="27.0" prefWidth="95.0" text="Add" />
+            <Button fx:id="delete" mnemonicParsing="false" onAction="#delete" text="Delete" />
         </buttons>
       </ButtonBar>
       <Label layoutX="14.0" layoutY="14.0" text="Photos">
          <font>
             <Font size="30.0" />
          </font></Label>
-      <TableView layoutX="14.0" layoutY="60.0" prefHeight="200.0" prefWidth="454.0">
+      <TableView fx:id="table" layoutX="14.0" layoutY="60.0" prefHeight="200.0" prefWidth="453.0">
         <columns>
-          <TableColumn prefWidth="152.0" text="Photo" />
-          <TableColumn prefWidth="318.0" text="Caption" />
+          <TableColumn fx:id="photoCol" prefWidth="175.0" text="Photo" />
+          <TableColumn fx:id="capCol" prefWidth="295.0" text="Caption" />
         </columns>
       </TableView>
-      <Button layoutX="402.0" layoutY="14.0" mnemonicParsing="false" text="Log Out" />
+      <Button fx:id="LogOut" layoutX="402.0" layoutY="14.0" mnemonicParsing="false" text="Log Out" />
+      <Button fx:id="back" layoutX="327.0" layoutY="14.0" mnemonicParsing="false" onAction="#back" prefHeight="27.0" prefWidth="62.0" text="Back" />
+      <Button fx:id="create" layoutX="14.0" layoutY="267.0" mnemonicParsing="false" onAction="#createAlbum" text="Create Album" />
    </children>
 </AnchorPane>

@@ -1,10 +1,11 @@
 package controller;
 
 import java.io.EOFException;
-import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
+
+import java.io.File;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -22,6 +23,11 @@ import model.Photo;
 import model.User;
 import model.UserList;
 
+/**
+ * @author Alay Shah
+ * @author Anshika Khare
+ *
+ */
 public class logInController implements Initializable {
 
 	@FXML 
@@ -30,14 +36,20 @@ public class logInController implements Initializable {
 	TextField usernameInput;
 	
 	
-	public void initialize(URL url, ResourceBundle resourceBundle) {
+	/**
+	 * Initializes the app set up. Makes sure that there is at least a stock user. Reads from file if there is data.
+	 * @see UserList
+	 * 
+	 */
+	@Override
+	public void initialize(URL url, ResourceBundle resourceBundle){
 		//read from file to import userList
-		System.out.println("hello");
+		//System.out.println("hello");
 		
 		try {
 			UserList.getUserList().readApp();
 		}catch(EOFException e){
-			System.out.println("No users");
+			//System.out.println("No users");
 		} catch (ClassNotFoundException e) {
 			e.printStackTrace();
 		} catch (IOException e) {
@@ -68,15 +80,28 @@ public class logInController implements Initializable {
 		if(input.equals("admin")){
 			//run admin sequence
 			FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/Admin.fxml"));
+//			System.out.println("Resouce Gotten");
 			Parent root = (Parent) loader.load();
+//			System.out.println("Resouce Loaded");
 			Scene admin  = new Scene(root);
+			AdminController next = loader.getController();
+			next.start();
+//			System.out.println("Scene Gotten");
 			Photos.window.setScene(admin);
+			
+//			System.out.println("Scene Set");
 			
 			
 		}else {
 			if(UserList.getUserList().contains(input)) {
 				//open albums page
 				
+				FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/AlbumListView.fxml"));
+				Parent root = (Parent) loader.load();
+				Scene user  = new Scene(root);
+				UserController next = loader.getController();
+				next.start(UserList.getUserList().getUser(input));
+				Photos.window.setScene(user);
 				
 				
 			}else {
@@ -91,17 +116,26 @@ public class logInController implements Initializable {
 		}
 	}
 	
+	/**
+	 * Sets up stock image user if this is the first time the user opens app.
+	 * @return Default Stock User 
+	 */
 	public User setStock() {
+		String currentPath = System.getProperty("user.dir");
 		User stock = new User("stock");
 		Album stockImg = new Album("stock img");
 		stock.addAlbum(stockImg);
-		String [] stockFilePaths = new String [] {"/docs/stock/Stock.jpg", "/docs/stock/stock2.jpg","/docs/stock/stock3.jpg", "/docs/stock/stock4.jpg", "/docs/stock/stock5.jpg"};
+		char x = File.separatorChar;
+		String relativePath = x+"data"+x+"stock"+x;
+		String [] stockFilePaths = new String [] {"Stock.jpg", "stock2.jpg","stock3.jpg", "stock4.jpg", "stock5.jpg"};
 		String [] captions = new String [] {"omg", "mind = blown", "yes sir", "hacker", "coffee"};
 		for(int i = 0; i<captions.length; i++) {
-			Photo p = new Photo(stockFilePaths[i]);
+			Photo p = new Photo(currentPath+relativePath+stockFilePaths[i]);
 			p.setCaption(captions[i]);
 			stockImg.addPhoto(p);
+			//System.out.println(p.getDate());
 		}
+		//System.out.println(stockImg);
 		return stock;
 		
 	}

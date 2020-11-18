@@ -4,29 +4,36 @@
 <?import javafx.scene.control.ButtonBar?>
 <?import javafx.scene.control.ChoiceBox?>
 <?import javafx.scene.control.Label?>
-<?import javafx.scene.control.ListView?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="319.0" prefWidth="522.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="319.0" prefWidth="522.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.UserController">
    <children>
-      <ListView layoutX="12.0" layoutY="78.0" prefHeight="200.0" prefWidth="499.0" />
       <ButtonBar layoutX="44.0" layoutY="278.0" nodeOrientation="RIGHT_TO_LEFT" prefHeight="40.0" prefWidth="454.0">
         <buttons>
-            <Button mnemonicParsing="false" text="Delete" />
-            <Button mnemonicParsing="false" text="Rename Album" />
-          <Button mnemonicParsing="false" text="New Album" />
-            <Button mnemonicParsing="false" text="Open" />
+            <Button mnemonicParsing="false" onAction="#deleteAlbum" text="Delete" />
+            <Button mnemonicParsing="false" onAction="#renameAlbum" text="Rename Album" />
+          <Button mnemonicParsing="false" onAction="#newAlbum" text="New Album" />
+            <Button mnemonicParsing="false" onAction="#openAlbum" text="Open" />
         </buttons>
       </ButtonBar>
       <Label layoutX="14.0" layoutY="9.0" text="Albums">
          <font>
             <Font size="30.0" />
          </font></Label>
-      <TextField layoutX="94.0" layoutY="47.0" prefHeight="27.0" prefWidth="167.0" promptText="Search" />
-      <ChoiceBox layoutX="12.0" layoutY="47.0" prefHeight="27.0" prefWidth="71.0" />
-      <Button layoutX="271.0" layoutY="47.0" mnemonicParsing="false" text="Search" />
-      <Button layoutX="449.0" layoutY="9.0" mnemonicParsing="false" text="Log Out" />
+      <TextField fx:id="searchBar" layoutX="94.0" layoutY="47.0" prefHeight="27.0" prefWidth="167.0" promptText="Search" />
+      <ChoiceBox fx:id="choiceBox" layoutX="12.0" layoutY="47.0" prefHeight="27.0" prefWidth="71.0" />
+      <Button fx:id="searchButton" layoutX="271.0" layoutY="47.0" mnemonicParsing="false" onAction="#searchHit" text="Search" />
+      <Button layoutX="449.0" layoutY="9.0" mnemonicParsing="false" onAction="#logOut" text="Log Out" />
+      <TableView fx:id="table" layoutX="12.0" layoutY="78.0" prefHeight="200.0" prefWidth="504.0">
+        <columns>
+          <TableColumn fx:id="nameCol" prefWidth="176.0" text="Album Name" />
+          <TableColumn fx:id="numCol" minWidth="0.0" prefWidth="130.0" text="Number Photos" />
+            <TableColumn fx:id="dateCol" prefWidth="197.0" text="Date Range" />
+        </columns>
+      </TableView>
    </children>
 </AnchorPane>

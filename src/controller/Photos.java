@@ -1,11 +1,20 @@
 package controller;
 
+import java.io.IOException;
+
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
+import model.UserList;
 
+/**
+ * 
+ * @author Alay Shah
+ * @author Anshika Khare
+ *
+ */
 public class Photos extends Application {
 	
 	
@@ -33,10 +42,15 @@ public class Photos extends Application {
 
 		mainStage.setResizable(false);
 		mainStage.setScene(logIn);
-		mainStage.show();		
+		mainStage.show();
+		
 		
 		
 	}
+	
+	
+
+		
 	
 	
 
