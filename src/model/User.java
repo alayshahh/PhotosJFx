@@ -49,6 +49,19 @@ public class User implements Serializable{
 		this.albums.remove(alb);
 	}
 	
+	/**
+	 * Gets Album from list.
+	 * @param alb
+	 * @return
+	 */
+	public Album getThisAlbum(Album alb) {
+		for(Album a: albums) {
+			if(a.equals(alb)) {
+				return a;
+			}
+		}
+		return null;
+	}
 	
 	/**
 	 * Returns true if the user already has an album with the same name
