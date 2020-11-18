@@ -20,7 +20,10 @@ import javafx.scene.control.ButtonType;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.Dialog;
 import javafx.scene.control.ListView;
+import javafx.scene.control.TableColumn;
+import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
+import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.ButtonBar.ButtonData;
 import javafx.scene.layout.GridPane;
@@ -43,8 +46,13 @@ public class UserController {
 	
 	@FXML ChoiceBox<String> choiceBox;
 	
-	@FXML ListView<Album> listView;
+	//@FXML ListView<Album> listView;
 	@FXML TextField searchBar;
+	@FXML TableView<Album> table;
+	@FXML TableColumn<Album, String> nameCol;
+	@FXML TableColumn<Album, String> numCol;
+	@FXML TableColumn<Album, String> dateCol;
+	
 	
 	ObservableList<Album> albums;
 	
@@ -67,7 +75,14 @@ public class UserController {
 //		System.out.println(me+" num Albums "+ me.getAlbums().size());
 //		System.out.println(me.getAlbums().get(0));
 		albums.addAll(me.getAlbums());
-		listView.setItems(albums);
+		nameCol.setCellValueFactory(new PropertyValueFactory<Album, String>("name"));
+		numCol.setCellValueFactory(new PropertyValueFactory<Album,String>("numPhotos"));
+		dateCol.setCellValueFactory(new PropertyValueFactory<Album,String>("dateRange"));
+		table.autosize();
+		nameCol.setResizable(false);
+		numCol.setReorderable(false);
+		dateCol.setResizable(false);
+		table.setItems(albums);
 	
 	}
 	
@@ -129,7 +144,7 @@ public class UserController {
 	 * @param e
 	 */
 	public void renameAlbum(ActionEvent e) {
-		Album alb =  listView.getSelectionModel().getSelectedItem();
+		Album alb =  table.getSelectionModel().getSelectedItem();
 		Dialog<String> rename = new Dialog<>();
 		rename.setTitle("Rename Album");
 		ButtonType add = new ButtonType("Rename", ButtonData.OK_DONE);
@@ -182,7 +197,7 @@ public class UserController {
 	 * @param e
 	 */
 	public void deleteAlbum(ActionEvent e) {
-		Album alb = listView.getSelectionModel().getSelectedItem();
+		Album alb = table.getSelectionModel().getSelectedItem();
 		Alert a = new Alert(AlertType.CONFIRMATION);
 		a.setHeaderText("Are you sure you want to delete this album?");
 		Optional<ButtonType> pressed = a.showAndWait();
@@ -213,7 +228,7 @@ public class UserController {
 		Parent root = (Parent) loader.load();
 		Scene user  = new Scene(root);
 		AlbumController next = loader.getController();
-		next.start(listView.getSelectionModel().getSelectedItem(),me, false);
+		next.start(table.getSelectionModel().getSelectedItem(),me, false);
 		Photos.window.setScene(user);
 	}
 	
