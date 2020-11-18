@@ -9,6 +9,12 @@ import javafx.scene.Scene;
 import javafx.stage.Stage;
 import model.UserList;
 
+/**
+ * 
+ * @author Alay Shah
+ * @author Anshika Khare
+ *
+ */
 public class Photos extends Application {
 	
 	
