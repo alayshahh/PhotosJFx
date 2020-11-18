@@ -240,21 +240,30 @@ public class UserController {
 	public void searchHit(ActionEvent e) throws IOException {
 		ArrayList<Photo> searchResult = new ArrayList<>();
 		String query = searchBar.getText().trim();
-		String [] queries = query.split(" ");
-		if(choiceBox.getValue().equals("Tag")) {
-			
-			String [] q1;
-			String []q2;
-			
+		//String [] queries = query.split(" ");
+		if(choiceBox.getValue().equals("Tag")) { //if its a tag search 
+			query = query.toUpperCase(); //put query to uppercase
+			String [] queries; 
 			boolean isAnd;
-			if(queries.length!=1&&queries.length!=3) {
+			if(query.contains(" OR ")) { //split if there is an " OR "
+				queries= query.split(" OR ");
+				isAnd=false;
+			}else {
+				queries = query.split(" AND ");//split on " AND " if not
+				isAnd=true;
+			}
+			String [] q1;
+			String [] q2;
+
+
+			if(queries.length!=1&&queries.length!=2) { //if more than one split
 				Alert a  = new Alert(AlertType.ERROR);
 				a.setContentText("Searches should be of format: Tag=value (AND/OR Tag=value)");
 				a.showAndWait();
 				return;
 			}
-			if(queries.length==1) {
-				q1 = queries[0].split("=");
+			if(queries.length==1) { //if one tag
+				q1 = queries[0].split("="); //split on equals sign to separate key,val
 				if(q1.length!=2) {
 					Alert a  = new Alert(AlertType.ERROR);
 					a.setContentText("Searches should be of format: Tag=value (AND/OR Tag=value)");
@@ -271,15 +280,12 @@ public class UserController {
 						}
 					}
 				}
-			} else if(queries[1].toUpperCase().equals("AND")|| queries[1].toUpperCase().equals("OR")) {
-				if(queries[1].length()==3) {
-					isAnd=true;
-				}else isAnd = false;
-				
+			} else {//2 tag query
+
 				q1 = queries[0].split("=");
-				q2 = queries[2].split("=");
-				
-				if(q1.length==2 && q2.length==2) {
+				q2 = queries[1].split("=");
+
+				if(q1.length==2 && q2.length==2) { 
 					Tag t1 = new Tag(q1[0], q1[1]);
 					Tag t2 = new Tag(q2[0], q2[1]);
 					for(Album alb: me.getAlbums()) {
@@ -289,28 +295,24 @@ public class UserController {
 							}
 						}
 					}
+
 				}else {
 					Alert a  = new Alert(AlertType.ERROR);
 					a.setContentText("Searches should be of format: Tag=value (AND/OR Tag=value)");
 					a.showAndWait();
 					return;
 				}
-			}else {
-				Alert a  = new Alert(AlertType.ERROR);
-				a.setContentText("Searches should be of format: Tag=value (AND/OR Tag=value)");
-				a.showAndWait();
-				return;
 			}
-			
 		}else {
 			//search by date
+			String [] queries = query.split(" ");
 			if(queries.length!=3||!(queries[1].equals("to"))) {
 				Alert a  = new Alert(AlertType.ERROR);
 				a.setContentText("Searches should be of format: mm/dd/yyy to mm/dd/yyyy");
 				a.showAndWait();
 				return;
 			}
-			
+
 			SimpleDateFormat sdf = new SimpleDateFormat("MM/dd/yyyy");
 			Date min = new Date();
 			Date max = new Date();
@@ -323,9 +325,9 @@ public class UserController {
 				a.setContentText("Searches should be of format: mm/dd/yyy to mm/dd/yyyy");
 				a.showAndWait();
 				return;
-				
+
 			}
-			
+
 			if(! sdf.format(min).equals(queries[0])|| ! sdf.format(max).equals(queries[2])) {
 				//alert
 				Alert a  = new Alert(AlertType.ERROR);
@@ -342,7 +344,7 @@ public class UserController {
 					}
 				}
 			}
-			
+
 		}
 		if (searchResult.size()==0) {
 			//alert no matches
@@ -351,21 +353,21 @@ public class UserController {
 			a.showAndWait();
 			return;
 		}
-		
+
 		FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/PhotosListView.fxml"));
 		Parent root = (Parent) loader.load();
 		Scene user  = new Scene(root);
 		AlbumController next = loader.getController();
 		next.start(new Album("temp",searchResult),me, true);
 		Photos.window.setScene(user);
-		
-		
-		
-		
-		
+
+
+
+
+
 	}
-	
-	
+
+
 	
 	/**
 	 * Returns to logINscreen
