@@ -32,7 +32,12 @@ import model.UserList;
 
 
 
-
+/**
+ * 
+ * @author Alay Shah
+ * @author Anshika Khare
+ *
+ */
 
 public class UserController {
 	
@@ -59,7 +64,7 @@ public class UserController {
 		choiceBox.setItems(FXCollections.observableArrayList("Tag", "Date"));
 		choiceBox.setValue("Tag");
 		albums = FXCollections.observableArrayList();
-		System.out.println(me+" num Albums "+ me.getAlbums().size());
+//		System.out.println(me+" num Albums "+ me.getAlbums().size());
 //		System.out.println(me.getAlbums().get(0));
 		albums.addAll(me.getAlbums());
 		listView.setItems(albums);
