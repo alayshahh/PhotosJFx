@@ -26,7 +26,12 @@ import model.Photo;
 import model.Tag;
 import model.User;
 import model.UserList;
-
+/**
+ * 
+ * @author Alay Shah
+ * @author Anshika Khare
+ *
+ */
 public class PhotoController {
 
 	Album album;
@@ -53,13 +58,20 @@ public class PhotoController {
 		me = u;
 		album = alb; 
 		photo = p;
+//		System.out.println(p);
+//		System.out.println(photo);
 		
 		ObservableList<Tag> tags = FXCollections.observableArrayList();
 		tags.addAll(photo.getTags());
+		tagsList.setItems(tags);
 		
-		img = photo.getImage();
+		img.setImage(photo.getImage().getImage());
+		img.autosize();
+		img.setStyle("-fx-alignment: center ;");
 		date.setEditable(false);
+		date.setText(photo.getDate());
 		caption.setEditable(false);
+		caption.setText(photo.getCaption());
 		
 		
 	}
@@ -91,7 +103,8 @@ public class PhotoController {
 	 * @throws IOException
 	 */
 	public void backHit(ActionEvent e) throws IOException {
-		FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/PhotoListView.fxml"));
+		FXMLLoader loader = new FXMLLoader();
+		loader.setLocation(getClass().getResource("/view/PhotosListView.fxml"));
 		Parent root = (Parent) loader.load();
 		Scene user  = new Scene(root);
 		AlbumController next = loader.getController();
@@ -173,6 +186,7 @@ public class PhotoController {
 	    result.ifPresent(pair-> {
 	    	Pair<String,String> info = pair;
 	    	Tag t  = new Tag(info.getKey(), info.getValue());
+	    	System.out.println(t);
 	    	if(photo.hasTag(t)) {
 	    		//alert
 	    		Alert alert = new Alert(AlertType.INFORMATION);
@@ -181,6 +195,7 @@ public class PhotoController {
 	    		alert.showAndWait();
 	    	}else {
 	    		photo.addTag(t);
+	    		System.out.println(photo.getTags());
 	    		try {
 					UserList.getUserList().writeApp();
 				} catch (IOException e1) {
@@ -222,15 +237,119 @@ public class PhotoController {
 		
 	}
 	
+	/**
+	 * Moves selected photo to given album. Deletes from current album. Returns to album overview.
+	 * @param e
+	 */
 	public void moveTo(ActionEvent e) {
 		
-		
+		Dialog<String> dialog = new Dialog<>();
+		dialog.setTitle("Move To");
+		ButtonType add = new ButtonType("Move", ButtonData.OK_DONE);
+		dialog.getDialogPane().getButtonTypes().addAll(add, ButtonType.CANCEL);
+		GridPane gridPane = new GridPane();
+	    gridPane.setHgap(10);
+	    gridPane.setVgap(10);
+	    gridPane.setPadding(new Insets(20, 150, 10, 10));
+	    TextField tName = new TextField();
+	    tName.setPromptText("Album Name");
+	    gridPane.add(tName, 1, 0);
+	    dialog.getDialogPane().setContent(gridPane);
+	    dialog.setResultConverter(dialogButton -> {
+	        if (dialogButton == add) {
+	            return tName.getText();
+	        }
+	        return null;
+	    });
+	    Optional<String> moveLoc = dialog.showAndWait();
+	    moveLoc.ifPresent(s->{
+	    	if(me.hasAlbum(new Album(s))) {
+	    		Album mover = me.getThisAlbum(new Album(s));
+	    		if(mover.contains(photo)) {
+	    			Alert a = new Alert(AlertType.INFORMATION);
+	    			a.setHeaderText("Album already has this photo.");
+	    			a.showAndWait();
+	    			return;
+	    		}else {
+	    			mover.addPhoto(photo);
+	    			album.removePhoto(photo);
+	    			try {
+						UserList.getUserList().writeApp();
+					} catch (IOException e1) {
+						// TODO Auto-generated catch block
+						e1.printStackTrace();
+					}
+	    			try {
+						backHit(e);
+					} catch (IOException e1) {
+						// TODO Auto-generated catch block
+						e1.printStackTrace();
+					}
+	    		}
+	    		
+	    	}else {
+	    		Alert a = new Alert(AlertType.ERROR);
+	    		a.setHeaderText("Invalid Name");
+	    		a.showAndWait();
+	    		return;
+	    	}
+	    });
+	    
+	    
+	    
 		
 	}
 	
+	/**
+	 * Copies selected Album to given album.
+	 * @param e
+	 */
 	public void copyTo(ActionEvent e) {
 		
-		
+		Dialog<String> dialog = new Dialog<>();
+		dialog.setTitle("Move To");
+		ButtonType add = new ButtonType("Move", ButtonData.OK_DONE);
+		dialog.getDialogPane().getButtonTypes().addAll(add, ButtonType.CANCEL);
+		GridPane gridPane = new GridPane();
+	    gridPane.setHgap(10);
+	    gridPane.setVgap(10);
+	    gridPane.setPadding(new Insets(20, 150, 10, 10));
+	    TextField tName = new TextField();
+	    tName.setPromptText("Album Name");
+	    gridPane.add(tName, 1, 0);
+	    dialog.getDialogPane().setContent(gridPane);
+	    dialog.setResultConverter(dialogButton -> {
+	        if (dialogButton == add) {
+	            return tName.getText();
+	        }
+	        return null;
+	    });
+	    Optional<String> moveLoc = dialog.showAndWait();
+	    moveLoc.ifPresent(s->{
+	    	if(me.hasAlbum(new Album(s))) {
+	    		Album mover = me.getThisAlbum(new Album(s));
+	    		if(mover.contains(photo)) {
+	    			Alert a = new Alert(AlertType.INFORMATION);
+	    			a.setHeaderText("Album already has this photo.");
+	    			a.showAndWait();
+	    			return;
+	    		}else {
+	    			mover.addPhoto(photo);
+	    			try {
+						UserList.getUserList().writeApp();
+					} catch (IOException e1) {
+						// TODO Auto-generated catch block
+						e1.printStackTrace();
+					}
+	    		}
+	    		
+	    	}else {
+	    		Alert a = new Alert(AlertType.ERROR);
+	    		a.setHeaderText("Invalid Name");
+	    		a.showAndWait();
+	    		return;
+	    	}
+	    });
 		
 	}
 	
