@@ -4,6 +4,11 @@ import java.io.Serializable;
 
 
 
+/**
+ * @author Alay Shah
+ * @author Anshika Khare
+ *
+ */
 public class Tag implements Serializable{
 	static final long serialVersionUID = 1L;
 	
@@ -33,8 +38,12 @@ public class Tag implements Serializable{
 			return false;
 		}else {
 			Tag t = (Tag) o;
-			return (this.value == t.value)&& (this.key == t.key);
+			return (this.value.equals(t.value))&& (this.key.equals(t.key));
 		}
+	}
+	
+	public String toString() {
+		return this.key +"="+ this.value;
 	}
 	
 	/**
@@ -44,7 +53,7 @@ public class Tag implements Serializable{
 	 * @return
 	 */
 	public boolean equals(String key, String value) {
-		return(this.key==key.trim().toUpperCase())&&(this.value==value.trim().toUpperCase());
+		return(this.key.equals(key.trim().toUpperCase()))&&(this.value.equals(value.trim().toUpperCase()));
 	}
 	/**
 	 * Returns tag value
