@@ -54,7 +54,7 @@ public class AdminController{
 	
 	/**
 	 * Creates a new user with the inputted username.
-	 * @param e
+	 * @param e action event
 	 * @see User
 	 */
 	public void createUserPressed(ActionEvent e) {
@@ -112,7 +112,7 @@ public class AdminController{
 	/**
 	 * Deletes the selected user instance from UserList
 	 * 
-	 * @param e
+	 * @param e action event
 	 * @see User
 	 * @see UserList
 	 */
@@ -144,8 +144,8 @@ public class AdminController{
 	/**
 	 * Safely logs admin out and returns them back to the login screen 
 	 * 
-	 * @param e
-	 * @throws IOException
+	 * @param e action event
+	 * @throws IOException if write fails
 	 */
 	public void logOutPressed(ActionEvent e) throws IOException {
 		Alert confirm = new Alert(AlertType.CONFIRMATION);

@@ -50,9 +50,9 @@ public class PhotoController {
 	
 	/**
 	 * Initializes the view for the given photo, filling in table, image view, date, caption and the tagList.
-	 * @param u
-	 * @param alb
-	 * @param p
+	 * @param u Current User
+	 * @param alb Current Album
+	 * @param p Current Photo
 	 */
 	public void start(User u, Album alb, Photo p) {
 		me = u;
@@ -79,7 +79,7 @@ public class PhotoController {
 	
 	/**
 	 * Opens next photo
-	 * @param e
+	 * @param e action event
 	 */
 	public void nextHit(ActionEvent e ) {
 		photo = album.getNext(photo);
@@ -89,7 +89,7 @@ public class PhotoController {
 	
 	/**
 	 * Opens previous photo
-	 * @param e
+	 * @param e action event
 	 */
 	public void prevHit(ActionEvent e) {
 		photo = album.getPrev(photo);
@@ -99,8 +99,8 @@ public class PhotoController {
 	
 	/**
 	 * Goes back to previous screen
-	 * @param e
-	 * @throws IOException
+	 * @param e action event
+	 * @throws IOException if FXMLLoader fails
 	 */
 	public void backHit(ActionEvent e) throws IOException {
 		FXMLLoader loader = new FXMLLoader();
@@ -114,7 +114,7 @@ public class PhotoController {
 	
 	/**
 	 * Changes caption of photo
-	 * @param e
+	 * @param e action event
 	 */
 	public void editCaptionHit(ActionEvent e) {
 		Dialog<String> dialog = new Dialog<>();
@@ -156,7 +156,7 @@ public class PhotoController {
 	
 	/**
 	 * Adds new Tag to photo if not already there
-	 * @param e
+	 * @param e action event
 	 */
 	public void addTag(ActionEvent e) {
 		Dialog<Pair<String, String>> dialog = new Dialog<>();
@@ -213,7 +213,7 @@ public class PhotoController {
 	
 	/**
 	 * Removes selected tag from the photo
-	 * @param e
+	 * @param e action event
 	 */
 	public void deleteTag(ActionEvent e) {
 		
@@ -239,7 +239,7 @@ public class PhotoController {
 	
 	/**
 	 * Moves selected photo to given album. Deletes from current album. Returns to album overview.
-	 * @param e
+	 * @param e action event
 	 */
 	public void moveTo(ActionEvent e) {
 		
@@ -302,7 +302,7 @@ public class PhotoController {
 	
 	/**
 	 * Copies selected Album to given album.
-	 * @param e
+	 * @param e action event
 	 */
 	public void copyTo(ActionEvent e) {
 		
@@ -355,7 +355,7 @@ public class PhotoController {
 	
 	/**
 	 * Logs out user.
-	 * @param e
+	 * @param e action event
 	 */
 	public void logOut(ActionEvent e) {
 		Alert confirm = new Alert(AlertType.CONFIRMATION);

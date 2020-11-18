@@ -57,9 +57,9 @@ public class AlbumController {
 	
 	/**
 	 * Initializes the view. Sets up photos and the captions in table view.
-	 * @param alb
-	 * @param u
-	 * @param isSearch
+	 * @param alb Current Album
+	 * @param u User
+	 * @param isSearch If the album is a result of a search
 	 */
 	public void start(Album alb, User u, boolean isSearch) {
 		me = u;
@@ -91,9 +91,9 @@ public class AlbumController {
 	
 	
 	/**
-	 * Opens file explorer and addes chosen file to the album
-	 * @param e
-	 * @throws IOException
+	 * Opens file explorer and adds chosen file to the album
+	 * @param e action event
+	 * @throws IOException if writeApp fails
 	 */
 	public void add(ActionEvent e) throws IOException {
 		System.out.println("Add pressed");
@@ -127,7 +127,7 @@ public class AlbumController {
 
 	/**
 	 * Deletes the selected photo from the album.
-	 * @param e
+	 * @param e action event
 	 */
 	public void delete(ActionEvent e) {
 		Alert a = new Alert(AlertType.CONFIRMATION);
@@ -152,7 +152,7 @@ public class AlbumController {
 	
 	/**
 	 * Creates album from the searchResult
-	 * @param e
+	 * @param e action event
 	 */
 	public void createAlbum(ActionEvent e) {
 		System.out.println("create pushed");
@@ -210,8 +210,8 @@ public class AlbumController {
 	}
 	/**
 	 * Goes back to previous Screen
-	 * @param e
-	 * @throws IOException
+	 * @param e action event
+	 * @throws IOException if loader fails
 	 */
 	public void back(ActionEvent e) throws IOException {
 		FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/AlbumListView.fxml"));
@@ -224,7 +224,7 @@ public class AlbumController {
 	
 	/**
 	 * Saves and logs User out
-	 * @param e
+	 * @param e action event
 	 */
 	public void logOut(ActionEvent e) {
 		Alert confirm = new Alert(AlertType.CONFIRMATION);

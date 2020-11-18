@@ -34,7 +34,7 @@ public class Album implements Serializable{
 	
 	/**
 	 * Creates new Album of with the title name
-	 * @param name
+	 * @param name name of album
 	 * @see Photo
 	 */
 	public Album(String name) {
@@ -43,8 +43,8 @@ public class Album implements Serializable{
 	
 	/**
 	 * Creates Album from list of Photos and given Title. Used for search results.
-	 * @param name
-	 * @param photos
+	 * @param name name of album
+	 * @param photos List of photos that belong in album
 	 * @see Photo
 	 */
 	public Album(String name, ArrayList<Photo>photos) {
@@ -55,7 +55,7 @@ public class Album implements Serializable{
 	
 	/**
 	 * Gets list of all photos.
-	 * @return
+	 * @return list of photos in album
 	 */
 	public ArrayList<Photo> getPhotos(){
 		return photos;
@@ -63,7 +63,7 @@ public class Album implements Serializable{
 	
 	/**
 	 * Adds Photo me to Album
-	 * @param me
+	 * @param me Photo to be added
 	 * @see Photo
 	 * 
 	 */
@@ -79,7 +79,7 @@ public class Album implements Serializable{
 	
 	/**
 	 * Renames Album to name
-	 * @param name
+	 * @param name New name of Album
 	 * @see Photo 
 	 */
 	public void rename(String name) {
@@ -98,8 +98,8 @@ public class Album implements Serializable{
 	
 	/**
 	 * Returns true if the album contains Photo me
-	 * @param me
-	 * @return
+	 * @param me Photo
+	 * @return true if photo is in album
 	 * @see Photo
 	 */
 	public boolean contains(Photo me) {
@@ -108,8 +108,8 @@ public class Album implements Serializable{
 	
 	/**
 	 * Returns list of Photos that have the searched tag 
-	 * @param t
-	 * @return
+	 * @param t Tag to be searched for
+	 * @return list of photos with tag t
 	 */
 	public ArrayList<Photo> searchTag(Tag t){
 		ArrayList<Photo> result = new ArrayList<>();
@@ -141,10 +141,10 @@ public class Album implements Serializable{
 	
 	/**
 	 * Tag Search for AND and OR 
-	 * @param t
-	 * @param t2
-	 * @param isAnd
-	 * @return
+	 * @param t Tag one
+	 * @param t2 Tag two
+	 * @param isAnd Conjunction or Disjunction
+	 * @return List of photos that fit criteria
 	 */
 	public ArrayList<Photo> searchTag(Tag t, Tag t2, boolean isAnd){
 		ArrayList<Photo> result = searchTag(t);
@@ -160,9 +160,9 @@ public class Album implements Serializable{
 	
 	/**
 	 * Returns arrayList of photos that are in the given range
-	 * @param min
-	 * @param max
-	 * @return
+	 * @param min Minimum Date
+	 * @param max Max Date
+	 * @return List of photos in date range
 	 */
 	public ArrayList<Photo> searchDate(Date min, Date max){
 		ArrayList<Photo> res = new ArrayList<>();
@@ -182,19 +182,19 @@ public class Album implements Serializable{
 	
 	/**
 	 * Returns a string that has the maxDate and minDate of the album
-	 * @return
+	 * @return String that has the date Range
 	 */
 	public String getDateRange() {
 		if(photos.size()==0) {
 			return "";
 		}
 		SimpleDateFormat sdf = new SimpleDateFormat("MM/dd/yyyy");
-		return sdf.format(minDate)+"-"+sdf.format(maxDate);
+		return sdf.format(minDate)+" to "+sdf.format(maxDate);
 	}
 	
 	/**
 	 * Returns number of photos in album.
-	 * @return
+	 * @return number of photos in album
 	 */
 	public String getNumPhotos() {
 		return ""+photos.size();
@@ -202,7 +202,7 @@ public class Album implements Serializable{
 	
 	/**
 	 * Returns album name
-	 * @return
+	 * @return Album name
 	 */
 	public String getName() {
 		return name;
@@ -238,9 +238,9 @@ public class Album implements Serializable{
 	}
 	
 	/**
-	 * Gives next image in order. Used for slideshow purposes.
-	 * @param p
-	 * @return
+	 * Gives next image in order. Used for slide show purposes.
+	 * @param p current photo
+	 * @return Photo that comes after current
 	 */
 	public Photo getNext(Photo p) {
 		int i = photos.indexOf(p);
@@ -251,9 +251,9 @@ public class Album implements Serializable{
 		
 	}
 	/**
-	 * Gives next image in order. Used for slideshow purposes.
-	 * @param p
-	 * @return
+	 * Gives previous image in order. Used for slideshow purposes.
+	 * @param p current photo
+	 * @return image before current
 	 */
 	public Photo getPrev(Photo p) {
 		int i = photos.indexOf(p);
@@ -265,8 +265,10 @@ public class Album implements Serializable{
 	}
 
 	/**
-	 * Returns string in format of: {@link #name} * {@link #photos.size()} * {@link #minDate}-{@link #maxDate} *
+	 * @return string in format of Album
+	 * 
 	 */
+	@Override
 	public String toString() {
 		if(photos.size()==0) {
 			return name+" * 0 * *";

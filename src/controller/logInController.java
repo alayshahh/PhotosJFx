@@ -118,7 +118,7 @@ public class logInController implements Initializable {
 	
 	/**
 	 * Sets up stock image user if this is the first time the user opens app.
-	 * @return
+	 * @return Default Stock User 
 	 */
 	public User setStock() {
 		String currentPath = System.getProperty("user.dir");

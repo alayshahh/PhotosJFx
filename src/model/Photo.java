@@ -37,7 +37,7 @@ public class Photo implements Serializable {
 	
 	/**
 	 * Creates photo object from the given file path
-	 * @param filePath
+	 * @param filePath path of object
 	 * 
 	 */
 	public Photo(String filePath) {
@@ -61,8 +61,8 @@ public class Photo implements Serializable {
 	}
 	/**
 	 * Creates Photo from file and given date
-	 * @param filePath
-	 * @param date
+	 * @param filePath file path of object
+	 * @param date date in MM/dd/yyyy format
 	 */
 	public Photo(String filePath, String date) {
 		this.filePath = filePath;
@@ -73,8 +73,8 @@ public class Photo implements Serializable {
 	
 	/**
 	 * Checks if input equals current photo
-	 * @param o
-	 * @return
+	 * @param o Object to be checked
+	 * @return true if equal
 	 */
 	@Override
 	public boolean equals(Object o) {
@@ -88,8 +88,8 @@ public class Photo implements Serializable {
 	
 	/**
 	 * Checks if current tag is equal to tag t
-	 * @param t
-	 * @return
+	 * @param t Checks if Photo has t
+	 * @return true if photo has tag
 	 */
 	public boolean hasTag(Tag t) {
 		for(Tag ta: tags) {
@@ -105,31 +105,31 @@ public class Photo implements Serializable {
 	
 	
 	/**
-	 * @return
+	 * @return filePath
 	 */
 	public String getFilePath() {
 		return filePath;
 	}
 	/**
-	 * @return
+	 * @return date in MM/dd/yyy format
 	 */
 	public String getDate() {
 		return date;
 	}
 	/**
-	 * @return
+	 * @return caption of photo
 	 */
 	public String getCaption() {
 		return caption;
 	}
 	/**
-	 * @param caption
+	 * @param caption new caption for photo
 	 */
 	public void setCaption(String caption) {
 		this.caption = caption;
 	}
 	/**
-	 * @return
+	 * @return Tags of photo
 	 */
 	public ArrayList<Tag> getTags() {
 		return tags;
@@ -137,7 +137,7 @@ public class Photo implements Serializable {
 	
 	/**
 	 * Adds inputed tag
-	 * @param t
+	 * @param t Tag for photo
 	 */
 	public void addTag(Tag t) {
 		tags.add(t);
@@ -146,7 +146,7 @@ public class Photo implements Serializable {
 	
 	/**
 	 * Returns Date Object
-	 * @return
+	 * @return Date of Photo
 	 */
 	public Date getDateObj() {
 		return this.d;
@@ -154,7 +154,7 @@ public class Photo implements Serializable {
 	
 	/**
 	 * Returns the ImageView of the photo
-	 * @return
+	 * @return ImageView with image in Photo
 	 */
 	public ImageView getImage() {
 		File photo = new File(filePath);
@@ -174,6 +174,10 @@ public class Photo implements Serializable {
 		return image;
 	}
 	
+	/**
+	 * Delete tag
+	 * @param t Tag to be deleted
+	 */
 	public void deleteTag(Tag t) {
 		tags.remove(t);
 	}

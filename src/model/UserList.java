@@ -22,7 +22,7 @@ public class UserList implements Serializable {
 	
 	/**
 	 * Takes in User and add it to the list
-	 * @param me
+	 * @param me User to be added
 	 */
 	public void addUser(User me) {
 		allUsers.add(me);
@@ -30,7 +30,7 @@ public class UserList implements Serializable {
 	
 	/**
 	 * Removes given user from the list
-	 * @param me
+	 * @param me User to be removed
 	 */
 	public void removeUser(User me) {
 		allUsers.remove(me);
@@ -38,8 +38,8 @@ public class UserList implements Serializable {
 	
 	/**
 	 * Tells if the current user is in the list
-	 * @param me
-	 * @return
+	 * @param me User to be checked
+	 * @return true if is in UserList
 	 */
 	public boolean contains(User me) {
 		return allUsers.contains(me);
@@ -47,8 +47,8 @@ public class UserList implements Serializable {
 	
 	/**
 	 * Tells if a user with the current username is in the list
-	 * @param userName
-	 * @return
+	 * @param userName userName of User to be checked
+	 * @return true if is contained
 	 */
 	public boolean contains(String userName) {
 		for(User u: allUsers) {
@@ -62,7 +62,7 @@ public class UserList implements Serializable {
 	
 	/**
 	 * Tells if userList is empty
-	 * @return
+	 * @return true if UserList is empty
 	 */
 	public boolean isEmpty() {
 		return allUsers.isEmpty();
@@ -70,8 +70,8 @@ public class UserList implements Serializable {
 	
 	/**
 	 * returns the user based on the given Username
-	 * @param userName
-	 * @return
+	 * @param userName UserName of User to be obtained
+	 * @return  User that has the same username
 	 */
 	public User getUser(String userName) {
 		for(User u: allUsers) {
@@ -83,10 +83,6 @@ public class UserList implements Serializable {
 	}
 	
 	
-	/**
-	 * @inheritDoc
-	 * @throws IOException
-	 */
 	 
 	public void writeApp() throws IOException{
 		ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream(storDir + File.separator + storeFile));
@@ -94,11 +90,7 @@ public class UserList implements Serializable {
 		oos.close();
 	}
 	
-	/**
-	 * @inheritDoc
-	 * @throws IOException
-	 * @throws ClassNotFoundException
-	 */
+
 	public void readApp() throws IOException, ClassNotFoundException{
 		ObjectInputStream  ois = new ObjectInputStream( new FileInputStream(storDir+File.separator+storeFile));
 		userList = (UserList) ois.readObject();
@@ -107,7 +99,7 @@ public class UserList implements Serializable {
 	}
 	/**
 	 * Gives current UserList
-	 * @return
+	 * @return Current UserList
 	 */
 	public static UserList getUserList() {
 		return userList;
@@ -115,7 +107,7 @@ public class UserList implements Serializable {
 	
 	/**
 	 * Gives the full list of current users
-	 * @return
+	 * @return list of Users in UserList
 	 */
 	public ArrayList<User> getAll(){
 		return allUsers;

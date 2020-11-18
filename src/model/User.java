@@ -17,7 +17,7 @@ public class User implements Serializable{
 	
 	/**
 	 * Constructor for User, takes in userName.
-	 * @param userName
+	 * @param userName Username for user
 	 */
 	public User(String userName) {
 		this.userName = userName;
@@ -25,7 +25,7 @@ public class User implements Serializable{
 	
 	/**
 	 * Returns the Albums that the user has
-	 * @return
+	 * @return Albums of User
 	 */
 	public ArrayList<Album> getAlbums(){
 		return this.albums;
@@ -34,7 +34,7 @@ public class User implements Serializable{
 	/**
 	 * Adds the Album to the user's album list
 	 * 
-	 * @param alb
+	 * @param alb Album to be added
 	 */
 	public void addAlbum(Album alb) {
 		this.albums.add(alb);
@@ -43,7 +43,7 @@ public class User implements Serializable{
 	/**
 	 * Deletes the album from the user's album list
 	 * 
-	 * @param alb
+	 * @param alb Album to be deleted
 	 */
 	public void deleteAlbum(Album alb){
 		this.albums.remove(alb);
@@ -51,8 +51,8 @@ public class User implements Serializable{
 	
 	/**
 	 * Gets Album from list.
-	 * @param alb
-	 * @return
+	 * @param alb Album to be obtained
+	 * @return Album that was wanted
 	 */
 	public Album getThisAlbum(Album alb) {
 		for(Album a: albums) {
@@ -65,8 +65,8 @@ public class User implements Serializable{
 	
 	/**
 	 * Returns true if the user already has an album with the same name
-	 * @param alb
-	 * @return
+	 * @param alb Album to be checked
+	 * @return true if Album is owned by User
 	 */
 	public boolean hasAlbum(Album alb) {
 		return albums.contains(alb);
@@ -75,17 +75,15 @@ public class User implements Serializable{
 	
 	/**
 	 * Returns the userName of the User
-	 * @return
+	 * @return UserName
 	 */
 	public String getUserName() {
 		return this.userName;
 	}
 	
 	
-	/**
-	 *Returns true if Object is a User and username equals current username
-	 */
-	@Override 
+	
+ 
 	public boolean equals(Object o) {
 		if(!(o instanceof User)|| o==null) {
 			return false;
@@ -95,9 +93,7 @@ public class User implements Serializable{
 		}
 	}
 	
-	/**
-	 * Returns the userName of the user
-	 */
+
 	public String toString () {
 		return userName;
 	}

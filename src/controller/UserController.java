@@ -63,7 +63,7 @@ public class UserController {
 	/**
 	 * Shows all the albums that the current user has. Populates the ListView with Albums.
 	 * 
-	 * @param user
+	 * @param user Current User
 	 * @see User
 	 * @see Album
 	 */
@@ -88,7 +88,7 @@ public class UserController {
 	
 	/**
 	 * Adds new album to the User's library. Makes sure the user doesn't have another album with the same name and that name is not blank.
-	 * @param e
+	 * @param e action event
 	 * @see Album
 	 * @see User
 	 */
@@ -141,7 +141,7 @@ public class UserController {
 	
 	/**
 	 * Renames the selected album.
-	 * @param e
+	 * @param e action event
 	 */
 	public void renameAlbum(ActionEvent e) {
 		Album alb =  table.getSelectionModel().getSelectedItem();
@@ -194,7 +194,7 @@ public class UserController {
 	
 	/**
 	 * Deletes selected album
-	 * @param e
+	 * @param e action event
 	 */
 	public void deleteAlbum(ActionEvent e) {
 		Album alb = table.getSelectionModel().getSelectedItem();
@@ -219,8 +219,8 @@ public class UserController {
 	
 	/**
 	 * Opens selected Album in a new View.
-	 * @param e
-	 * @throws IOException 
+	 * @param e action event
+	 * @throws IOException  if FXMLLoader fails
 	 */
 	public void openAlbum(ActionEvent e) throws IOException {
 		
@@ -234,8 +234,8 @@ public class UserController {
 	
 	/**
 	 * Opens view with all photos that are part of the search hit.
-	 * @param e
-	 * @throws IOException 
+	 * @param e action event
+	 * @throws IOException if FXMLLoader fails
 	 */
 	public void searchHit(ActionEvent e) throws IOException {
 		ArrayList<Photo> searchResult = new ArrayList<>();
@@ -369,7 +369,7 @@ public class UserController {
 	
 	/**
 	 * Returns to logINscreen
-	 * @param e
+	 * @param e action event
 	 */
 	public void logOut(ActionEvent e) {
 		
