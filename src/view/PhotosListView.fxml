@@ -12,7 +12,7 @@
    <children>
       <ButtonBar layoutX="96.0" layoutY="260.0" prefHeight="40.0" prefWidth="372.0">
         <buttons>
-            <Button fx:id="view" mnemonicParsing="false" text="View" />
+            <Button fx:id="view" mnemonicParsing="false" onAction="#view" text="View" />
             <Button fx:id="add" mnemonicParsing="false" onAction="#add" prefHeight="27.0" prefWidth="95.0" text="Add" />
             <Button fx:id="delete" mnemonicParsing="false" onAction="#delete" text="Delete" />
         </buttons>
