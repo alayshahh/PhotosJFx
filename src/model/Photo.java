@@ -41,10 +41,11 @@ public class Photo implements Serializable {
 	 * 
 	 */
 	public Photo(String filePath) {
+		tags = new ArrayList<>();
 		this.filePath = filePath;
 		File photo = new File(filePath);
 //		System.out.println((photo.lastModified()));
-		System.out.println(photo.getAbsolutePath());
+		//System.out.println(photo.getAbsolutePath());
 		d = new Date(photo.lastModified());
 		date = new SimpleDateFormat("MM/dd/yyy").format(d);
 		try {
@@ -140,6 +141,7 @@ public class Photo implements Serializable {
 	 */
 	public void addTag(Tag t) {
 		tags.add(t);
+		//System.out.println("tag added");
 	}
 	
 	/**
@@ -163,7 +165,7 @@ public class Photo implements Serializable {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		System.out.println(path);
+		//System.out.println(path);
 		Image i = new Image(path);
 		ImageView image = new ImageView(i);
 		
